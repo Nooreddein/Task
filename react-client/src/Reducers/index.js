@@ -1,14 +1,10 @@
-const INIT_STATE = {
-    lang:"em",
-}
+import {combineReducers} from 'redux'
 
-const langReducer = (state = INIT_STATE,  action)=>{
-    switch(action.type){
-        case "LANG": 
-        return {...state,lang:action.payload}
-        default:
-        return state
-    }
-}
+import langReducer from './langReducer'
 
-export default langReducer
+const rootReducer = combineReducers({
+    langReducer
+})
+
+
+export default rootReducer
