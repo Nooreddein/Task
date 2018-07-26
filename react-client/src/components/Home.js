@@ -93,7 +93,7 @@ class Home extends React.Component {
    aria-labelledby="simple-modal-title"
    aria-describedby="simple-modal-description"
    open={this.state.openSignup}
-   onClose={this.handleCloseSignup}
+   onClose={this.handleCloseSignup} 
  >
    <div style={getModalStyle()} className={classes.paper}>
      <Typography variant="title" id="modal-title">
