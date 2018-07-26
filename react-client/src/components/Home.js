@@ -4,6 +4,9 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
+import {connect} from 'react-redux'
+import {langChanged} from '../Actions/index'
+
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -63,7 +66,7 @@ class Home extends React.Component {
 
   render() {
     const { classes } = this.props;
-
+    console.log(this.props)
     return (
         <div>
       <div>
@@ -118,4 +121,10 @@ Home.propTypes = {
 // We need an intermediary variable for handling the recursive nesting.
 const HomeWrapped = withStyles(styles)(Home);
 
-export default HomeWrapped;
+const mapStateToProps = ({langReducer}) =>{
+  const {lang} = langReducer
+  return {lang}
+}
+
+
+export default connect(mapStateToProps,{langChanged})(HomeWrapped);
