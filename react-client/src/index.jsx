@@ -1,18 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+import AppRoute from './components/AppRoute.js';
 
 class App extends React.Component {
-
-
-
+  constructor(props) {
+    super(props);
+    this.state = {
+    };
+  }
 
   render() {
     return (
       <div>
-        <h1>Task</h1>
-      </div>
-    )
+        <AppRoute />
+      </div>);
   }
 }
 
