@@ -4,8 +4,8 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
-import {connect} from 'react-redux'
-import {langChanged} from '../Actions/index'
+import { connect } from 'react-redux'
+import { langChanged } from '../Actions/index'
 
 
 function rand() {
@@ -23,7 +23,7 @@ function getModalStyle() {
   };
 }
 
-const styles  = theme => ({
+const styles = theme => ({
   paper: {
     position: 'absolute',
     width: theme.spacing.unit * 50,
@@ -35,31 +35,31 @@ const styles  = theme => ({
 
 class Home extends React.Component {
 
-    constructor (props) {
-        super(props);
-        this.state = {
-            open: false,
-            openSignup: false
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false,
+      openSignup: false
 
-        };
-        this.handleOpen = this.handleOpen.bind(this)
-        this.handleClose = this.handleClose.bind(this)
-        this.handleSignup = this.handleSignup.bind(this)
-        this.handleCloseSignup = this.handleCloseSignup.bind(this)
-    }   
-  handleOpen  ()  {
+    };
+    this.handleOpen = this.handleOpen.bind(this)
+    this.handleClose = this.handleClose.bind(this)
+    this.handleSignup = this.handleSignup.bind(this)
+    this.handleCloseSignup = this.handleCloseSignup.bind(this)
+  }
+  handleOpen() {
     this.setState({ open: true });
   };
 
-  handleClose  () {
+  handleClose() {
     this.setState({ open: false });
   };
 
 
-  handleSignup(){
+  handleSignup() {
     this.setState({ openSignup: true });
   }
-  handleCloseSignup  () {
+  handleCloseSignup() {
     this.setState({ openSignup: false });
   };
 
@@ -68,48 +68,48 @@ class Home extends React.Component {
     const { classes } = this.props;
     console.log(this.props)
     return (
-        <div>
       <div>
-        
-        <Button onClick={this.handleOpen}>Login</Button>
-        <Modal
-          aria-labelledby="simple-modal-title"
-          aria-describedby="simple-modal-description"
-          open={this.state.open}
-          onClose={this.handleClose}
-        >
-          <div style={getModalStyle()} className={classes.paper}>
-            <Typography variant="title" id="modal-title">
-              Text in a modal
+        <div>
+
+          <Button onClick={this.handleOpen}>Login</Button>
+          <Modal
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+            open={this.state.open}
+            onClose={this.handleClose}
+          >
+            <div style={getModalStyle()} className={classes.paper}>
+              <Typography variant="title" id="modal-title">
+                Text in a modal
             </Typography>
-            <Typography variant="subheading" id="simple-modal-description">
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+              <Typography variant="subheading" id="simple-modal-description">
+                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
             </Typography>
-            <HomeWrapped />
-          </div>
-        </Modal>
+              <HomeWrapped />
+            </div>
+          </Modal>
+        </div>
+        <div>
+
+          <Button onClick={this.handleSignup}>Signup</Button>
+          <Modal
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+            open={this.state.openSignup}
+            onClose={this.handleCloseSignup}
+          >
+            <div style={getModalStyle()} className={classes.paper}>
+              <Typography variant="title" id="modal-title">
+                Text in a modal
+     </Typography>
+              <Typography variant="subheading" id="simple-modal-description">
+                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+     </Typography>
+              <HomeWrapped />
+            </div>
+          </Modal>
+        </div>
       </div>
- <div>
-        
- <Button onClick={this.handleSignup}>Signup</Button>
- <Modal
-   aria-labelledby="simple-modal-title"
-   aria-describedby="simple-modal-description"
-   open={this.state.openSignup}
-   onClose={this.handleCloseSignup} 
- >
-   <div style={getModalStyle()} className={classes.paper}>
-     <Typography variant="title" id="modal-title">
-       Text in a modal
-     </Typography>
-     <Typography variant="subheading" id="simple-modal-description">
-       Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-     </Typography>
-     <HomeWrapped />
-   </div>
- </Modal>
-</div>
-</div>
     );
   }
 }
@@ -121,10 +121,13 @@ Home.propTypes = {
 // We need an intermediary variable for handling the recursive nesting.
 const HomeWrapped = withStyles(styles)(Home);
 
-const mapStateToProps = ({langReducer}) =>{
-  const {lang} = langReducer
-  return {lang}
+const mapStateToProps = ({ langReducer }) => {
+  const { lang } = langReducer
+  return { lang }
 }
 
 
-export default connect(mapStateToProps,{langChanged})(HomeWrapped);
+export default connect(mapStateToProps, { langChanged })(HomeWrapped);
+
+
+
