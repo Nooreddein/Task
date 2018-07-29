@@ -1,25 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux'
 import { langChanged } from '../Actions/index'
+import LoginModal from './LoginModal';
+import SignUpModal from './SignUpModal';
+import { Strings } from './Strings'
+import { Grid } from '@material-ui/core';
 
 
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
+
 
 function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
-
   return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
+    top: `${50}%`,
+    left: `${50}%`,
+    transform: `translate(-${50}%, -${50}%)`,
   };
 }
 
@@ -45,7 +42,9 @@ class Home extends React.Component {
     this.handleOpen = this.handleOpen.bind(this)
     this.handleClose = this.handleClose.bind(this)
     this.handleSignup = this.handleSignup.bind(this)
-    this.handleCloseSignup = this.handleCloseSignup.bind(this)
+
+    this.changeLang = this.changeLang.bind(this)
+  this.handleCloseSignup = this.handleCloseSignup.bind(this)
   }
   handleOpen() {
     this.setState({ open: true });
@@ -62,53 +61,29 @@ class Home extends React.Component {
   handleCloseSignup() {
     this.setState({ openSignup: false });
   };
-
+  changeLang() {
+    this.props.langChanged(this.props.lang === "en" ? 'ar' : "en")
+  }
 
   render() {
-    const { classes } = this.props;
+    const { lang } = this.props;
     console.log(this.props)
     return (
-      <div>
-        <div>
 
-          <Button onClick={this.handleOpen}>Login</Button>
-          <Modal
-            aria-labelledby="simple-modal-title"
-            aria-describedby="simple-modal-description"
-            open={this.state.open}
-            onClose={this.handleClose}
-          >
-            <div style={getModalStyle()} className={classes.paper}>
-              <Typography variant="title" id="modal-title">
-                Text in a modal
-            </Typography>
-              <Typography variant="subheading" id="simple-modal-description">
-                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </Typography>
-              <HomeWrapped />
-            </div>
-          </Modal>
-        </div>
-        <div>
+      <div dir={lang === "en" ? "ltr" : "rtl"}>
+        <Grid container  direction="row">
+          <Grid item xs={4}>
+            <Button onClick={this.changeLang}>
+              {lang === "en" ? "عربي" : "English"}
+            </Button>
+          </Grid>
+            <Button onClick={this.handleOpen}>{Strings[lang].login}</Button>
+            <LoginModal open={this.state.open} onClose={this.handleClose} modalStyle={getModalStyle()} />
 
-          <Button onClick={this.handleSignup}>Signup</Button>
-          <Modal
-            aria-labelledby="simple-modal-title"
-            aria-describedby="simple-modal-description"
-            open={this.state.openSignup}
-            onClose={this.handleCloseSignup}
-          >
-            <div style={getModalStyle()} className={classes.paper}>
-              <Typography variant="title" id="modal-title">
-                Text in a modal
-     </Typography>
-              <Typography variant="subheading" id="simple-modal-description">
-                Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-     </Typography>
-              <HomeWrapped />
-            </div>
-          </Modal>
-        </div>
+            <Button onClick={this.handleSignup}>{Strings[lang].signup}</Button>
+            <SignUpModal open={this.state.openSignup} onClose={this.handleCloseSignup} modalStyle={getModalStyle()} />
+        </Grid>
+
       </div>
     );
   }
@@ -118,8 +93,7 @@ Home.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-// We need an intermediary variable for handling the recursive nesting.
-const HomeWrapped = withStyles(styles)(Home);
+withStyles(styles)(Home);
 
 const mapStateToProps = ({ langReducer }) => {
   const { lang } = langReducer
@@ -127,7 +101,7 @@ const mapStateToProps = ({ langReducer }) => {
 }
 
 
-export default connect(mapStateToProps, { langChanged })(HomeWrapped);
 
+export default connect(mapStateToProps, { langChanged })(withStyles(styles)(Home));
 
 
