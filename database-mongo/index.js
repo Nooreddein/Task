@@ -12,3 +12,16 @@ db.once('open', function() {
 });
 
 
+let Schema = mongoose.Schema;
+
+let Userscehma  = new Schema ({
+  username: { type: String, required: true, unique: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  resetPasswordToken: String,
+  resetPasswordExpires: Date
+})
+
+Users = mongoose.model('Users', Userscehma);
+
+module.exports.Users = Users;
