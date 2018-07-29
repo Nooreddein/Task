@@ -4,6 +4,8 @@ const INIT_STATE = {
 
 
 
+
+
 const langReducer = (state = INIT_STATE, action) => {
     switch (action.type) {
         case "LANG_CHANGED":
@@ -14,3 +16,7 @@ const langReducer = (state = INIT_STATE, action) => {
 }
 
 export default langReducer
+
+
+
+
