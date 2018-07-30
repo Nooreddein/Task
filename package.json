@@ -26,12 +26,20 @@
     "axios": "^0.18.0",
     "bcrypt": "^3.0.0",
     "body-parser": "^1.17.2",
+<<<<<<< HEAD
     "css-loader": "^1.0.0",
+=======
+    "cookie-parser": "^1.4.3",
+>>>>>>> 2be80d9d0d907c8b0a502e2651156e1e3dfb4006
     "express": "^4.15.0",
+    "express-flash": "0.0.2",
     "express-session": "^1.15.6",
     "jquery": "^3.1.1",
     "mongoose": "^4.8.6",
+    "morgan": "^1.9.0",
     "mysql": "^2.13.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-google-login": "^3.2.1",
