@@ -9,7 +9,7 @@ const saltRounds = 10;
 const helper = require('../helper/uitilty');
  app.use(express.static(__dirname + '/../react-client/dist'));
 
- app.use(bodyParser.json({limit: '50mb'})); 
+ app.use(bodyParser.json({limit: '50mb'}));     
  app.use(bodyParser.urlencoded({limit: '50mb', extended: true})); 
  app.use(session({
      secret: 'very very secret', 

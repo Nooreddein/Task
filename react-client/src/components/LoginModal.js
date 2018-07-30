@@ -6,6 +6,8 @@ import Modal from '@material-ui/core/Modal';
 import { Grid, Button, TextField, Divider } from '@material-ui/core';
 import { Strings } from './Strings'
 import fb from './fb.svg'
+import { GoogleLogin } from 'react-google-login';
+
 const styles = theme => ({
     paper: {
         position: 'absolute',
@@ -18,6 +20,10 @@ const styles = theme => ({
     },
 
 });
+
+const responseGoogle = (response) => {
+    console.log(response);
+}
 
 class LoginModal extends Component {
     render() {
@@ -34,35 +40,40 @@ class LoginModal extends Component {
                         </Grid>
                         <Divider />
                         <Grid item xs>
-
+                            <GoogleLogin
+                                clientId="113021884886-314ovegh53pf00d99jn8moc2bj1la6sq.apps.googleusercontent.com"
+                                buttonText={lang === "en" ? "Login" : "تسجيل الدخول"}
+                                onSuccess={responseGoogle}
+                                onFailure={responseGoogle}
+                            />
                             <Button style={{ width: "100%", margin: 5 }} variant="contained" color="primary">
-                            <Grid>
+                                <Grid>
                                 </Grid>
                                 <img alt=""
                                     src={fb}
                                     style={{ height: "15px", width: "15px", }}
                                 />{lang === "ar" ? "الو" : "ALO"}
-                                    
+
                             </Button>
-                                <TextField placeholder={Strings[lang].loginModal.palceholderUser} />
+                            <TextField placeholder={Strings[lang].loginModal.palceholderUser} />
                         </Grid>
-                            <Grid item xs>
-                                <TextField placeholder={Strings[lang].loginModal.palceholderPass} />
-                            </Grid>
+                        <Grid item xs>
+                            <TextField placeholder={Strings[lang].loginModal.palceholderPass} />
                         </Grid>
+                    </Grid>
                 </div>
             </Modal>
-                )
-            }
-        }
-        
+        )
+    }
+}
+
 LoginModal.propTypes = {
-                    classes: PropTypes.object.isRequired,
-            };
-const mapStateToProps = ({langReducer}) => {
-    const {lang} = langReducer
-    return {lang}
-                }
-                
-                
-                export default connect(mapStateToProps)(withStyles(styles)(LoginModal))
+    classes: PropTypes.object.isRequired,
+};
+const mapStateToProps = ({ langReducer }) => {
+    const { lang } = langReducer
+    return { lang }
+}
+
+
+export default connect(mapStateToProps)(withStyles(styles)(LoginModal))
