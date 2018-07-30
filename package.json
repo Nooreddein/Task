@@ -26,11 +26,8 @@
     "axios": "^0.18.0",
     "bcrypt": "^3.0.0",
     "body-parser": "^1.17.2",
-<<<<<<< HEAD
     "css-loader": "^1.0.0",
-=======
     "cookie-parser": "^1.4.3",
->>>>>>> 2be80d9d0d907c8b0a502e2651156e1e3dfb4006
     "express": "^4.15.0",
     "express-flash": "0.0.2",
     "express-session": "^1.15.6",

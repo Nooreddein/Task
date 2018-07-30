@@ -28,9 +28,6 @@ const styles = theme => ({
 });
 
 class Home extends React.Component {
-
-<<<<<<< HEAD
-=======
   constructor(props) {
     super(props);
     this.state = {
@@ -43,7 +40,7 @@ class Home extends React.Component {
     this.handleSignup = this.handleSignup.bind(this)
 
     this.changeLang = this.changeLang.bind(this)
-  this.handleCloseSignup = this.handleCloseSignup.bind(this)
+    this.handleCloseSignup = this.handleCloseSignup.bind(this)
   }
   handleOpen() {
     this.setState({ open: true });
@@ -64,30 +61,30 @@ class Home extends React.Component {
     this.props.langChanged(this.props.lang === "en" ? 'ar' : "en")
   }
 
->>>>>>> 2be80d9d0d907c8b0a502e2651156e1e3dfb4006
+
   render() {
     const { lang } = this.props;
     console.log(this.state)
     return (
 
       <div dir={lang === "en" ? "ltr" : "rtl"}>
-<<<<<<< HEAD
+
         <AppBar />
-=======
-        <Grid container  direction="row">
+
+        <Grid container direction="row">
           <Grid item xs={4}>
             <Button onClick={this.changeLang}>
               {lang === "en" ? "عربي" : "English"}
             </Button>
           </Grid>
-            <Button onClick={this.handleOpen}>{Strings[lang].login}</Button>
-            <LoginModal open={this.state.open} onClose={this.handleClose} modalStyle={getModalStyle()} />
+          <Button onClick={this.handleOpen}>{Strings[lang].login}</Button>
+          <LoginModal open={this.state.open} onClose={this.handleClose} modalStyle={getModalStyle()} />
 
-            <Button onClick={this.handleSignup}>{Strings[lang].signup}</Button>
-            <SignUpModal open={this.state.openSignup} onClose={this.handleCloseSignup} modalStyle={getModalStyle()} />
+          <Button onClick={this.handleSignup}>{Strings[lang].signup}</Button>
+          <SignUpModal open={this.state.openSignup} onClose={this.handleCloseSignup} modalStyle={getModalStyle()} />
         </Grid>
 
->>>>>>> 2be80d9d0d907c8b0a502e2651156e1e3dfb4006
+
       </div>
     );
   }
