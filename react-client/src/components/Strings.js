@@ -3,7 +3,7 @@ export const Strings = {
         login:"Login",
         signup:"Sign Up",
         loginModal:{
-            head:"LogIn to your account!",
+            head:"LogIn as a admin!",
             palceholderUser:"User Name",
             palceholderPass:"Password"
         }
