@@ -48,7 +48,6 @@ class NavBar extends React.Component {
         this.state = {
             open: false,
             openSignup: false,
-            alo: true
         }
         this.handleOpen = this.handleOpen.bind(this)
         this.handleSignup = this.handleSignup.bind(this)
@@ -81,16 +80,17 @@ class NavBar extends React.Component {
             <div className={classes.root} dir={lang === "en" ? "ltr" : "rtl"}>
                 <AppBar position="static">
                     <Toolbar>
-                        {alo ?
                             <div>
-                                <Button onClick={this.handleOpen}><p style={{ color: "white" }}>{Strings[lang].login}</p></Button>
+                                <Button onClick={this.handleOpen}>
+                                    <p style={{ color: "white" }}>
+                                        {Strings[lang].login}</p>
+                                </Button>
                                 <LoginModal open={this.state.open} onClose={this.handleClose} modalStyle={getModalStyle()} />
-                            </div> : null}
-                        {alo ?
+                            </div> 
                             <div className={classes.flex}>
                                 <Button onClick={this.handleSignup}><p style={{ color: "white" }}>{Strings[lang].signup}</p></Button>
                                 <SignUpModal open={this.state.openSignup} onClose={this.handleCloseSignup} modalStyle={getModalStyle()} />
-                            </div> : null}
+                            </div> 
                         <Button onClick={this.changeLang}>
                             <p style={{ color: "white" }}>{lang === "en" ? "عربي" : "English"}</p>
                         </Button>

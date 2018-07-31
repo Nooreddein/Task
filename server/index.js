@@ -14,6 +14,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const async = require('async');
 const crypto = require('crypto');
 const flash = require('express-flash');
+const ACCESS_TOKEN = "Bearer ALO_!@#$"
 
 passport.use(new LocalStrategy(
     function (username, password, done) {
@@ -120,6 +121,7 @@ app.post('/login', (req, res) => {
 
 
 
+
 app.post('/forgot', function (req, res, next) {
     let email = req.body.email
     async.waterfall([
@@ -171,6 +173,16 @@ app.post('/forgot', function (req, res, next) {
         res.redirect('/forgot');
     });
 });
+
+
+app.post("/admin", (req, res) => {
+    console.log(req.body.access_token)
+    if (req.body.access_token === ACCESS_TOKEN)
+        res.send("YOU ARE ALLOWED")
+    else
+        res.send("YOU SHALL NOT PASS")
+})
+
 
 
 

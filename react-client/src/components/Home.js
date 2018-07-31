@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux'
 import { langChanged } from '../Actions/index'
 import AppBar from './AppBar';
+import Axios from '../../../node_modules/axios';
 
 
 
@@ -14,6 +15,7 @@ function getModalStyle() {
     top: `${50}%`,
     left: `${50}%`,
     transform: `translate(-${50}%, -${50}%)`,
+    outline: "none"
   };
 }
 
@@ -35,30 +37,24 @@ class Home extends React.Component {
       openSignup: false
 
     };
-    this.handleOpen = this.handleOpen.bind(this)
-    this.handleClose = this.handleClose.bind(this)
-    this.handleSignup = this.handleSignup.bind(this)
+    this.adminPost = this.adminPost.bind(this)
+    this.NotadminPost = this.NotadminPost.bind(this)
 
-    this.changeLang = this.changeLang.bind(this)
-    this.handleCloseSignup = this.handleCloseSignup.bind(this)
   }
-  handleOpen() {
-    this.setState({ open: true });
-  };
 
-  handleClose() {
-    this.setState({ open: false });
-  };
-
-
-  handleSignup() {
-    this.setState({ openSignup: true });
+  adminPost() {
+    Axios.post("/admin", {
+         access_token: "Bearer ALO_!@#$"
+    }).then((res) => {
+      console.log(res.data)
+    })
   }
-  handleCloseSignup() {
-    this.setState({ openSignup: false });
-  };
-  changeLang() {
-    this.props.langChanged(this.props.lang === "en" ? 'ar' : "en")
+
+  NotadminPost() {
+    Axios.post("/admin")
+      .then((res) => {
+        console.log(res.data)
+      })
   }
 
 
@@ -68,23 +64,13 @@ class Home extends React.Component {
     return (
 
       <div dir={lang === "en" ? "ltr" : "rtl"}>
-
         <AppBar />
-
-        <Grid container direction="row">
-          <Grid item xs={4}>
-            <Button onClick={this.changeLang}>
-              {lang === "en" ? "عربي" : "English"}
-            </Button>
-          </Grid>
-          <Button onClick={this.handleOpen}>{Strings[lang].login}</Button>
-          <LoginModal open={this.state.open} onClose={this.handleClose} modalStyle={getModalStyle()} />
-
-          <Button onClick={this.handleSignup}>{Strings[lang].signup}</Button>
-          <SignUpModal open={this.state.openSignup} onClose={this.handleCloseSignup} modalStyle={getModalStyle()} />
-        </Grid>
-
-
+        <Button onClick={this.adminPost}>
+          ADMIN
+        </Button>
+        <Button onClick={this.NotadminPost}>
+          NOT ADMIN
+        </Button>
       </div>
     );
   }
@@ -104,5 +90,3 @@ const mapStateToProps = ({ langReducer }) => {
 
 
 export default connect(mapStateToProps, { langChanged })(withStyles(styles)(Home));
-
-

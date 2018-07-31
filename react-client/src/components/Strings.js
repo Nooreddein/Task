@@ -3,9 +3,11 @@ export const Strings = {
         login:"Login",
         signup:"Sign Up",
         loginModal:{
-            head:"LogIn as a admin!",
+            head:"Log in!",
             palceholderUser:"User Name",
-            palceholderPass:"Password"
+            palceholderPass:"Password",
+            palceholderEmail:"Email",
+            signup:"Sign Up"
         }
     },
     ar:{
@@ -14,7 +16,9 @@ export const Strings = {
         loginModal:{
             head:"سجل الدخول الى حسابك !",
             palceholderUser:"اسم المستخدم",
-            palceholderPass:"كلمة السر"
+            palceholderPass:"كلمة السر",
+            palceholderEmail:"البريد الالكتروني",
+            signup:"انشاء حساب"
         }
     }
 }
